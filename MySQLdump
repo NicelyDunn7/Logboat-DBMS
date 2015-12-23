@@ -1,0 +1,324 @@
+-- MySQL dump 10.13  Distrib 5.5.46, for debian-linux-gnu (x86_64)
+--
+-- Host:     Database: 
+-- ------------------------------------------------------
+-- Server version	5.5.45-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `batch`
+--
+
+DROP TABLE IF EXISTS `batch`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `batch` (
+  `bid` int(11) NOT NULL,
+  `brewday` date NOT NULL,
+  `fermentation_id` int(11) NOT NULL,
+  `packaging` varchar(150) DEFAULT NULL,
+  `shipment` varchar(150) DEFAULT NULL,
+  PRIMARY KEY (`bid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `batch`
+--
+
+LOCK TABLES `batch` WRITE;
+/*!40000 ALTER TABLE `batch` DISABLE KEYS */;
+INSERT INTO `batch` VALUES (1,'2015-12-01',1,'bubbles','ups'),(2,'2015-03-15',1,'box','USPS'),(5,'1950-03-15',6,'foam','freight'),(6,'2015-12-23',6,'asdfasdf','DHL'),(111,'2015-01-01',5,'asdf','asdf'),(9855,'2015-12-03',1,'asdf','asdf');
+/*!40000 ALTER TABLE `batch` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `batch_in_keg`
+--
+
+DROP TABLE IF EXISTS `batch_in_keg`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `batch_in_keg` (
+  `batchID` int(11) NOT NULL,
+  `kegID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `batch_in_keg`
+--
+
+LOCK TABLES `batch_in_keg` WRITE;
+/*!40000 ALTER TABLE `batch_in_keg` DISABLE KEYS */;
+/*!40000 ALTER TABLE `batch_in_keg` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `beer`
+--
+
+DROP TABLE IF EXISTS `beer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `beer` (
+  `beerID` int(11) NOT NULL,
+  `recipe` mediumblob,
+  PRIMARY KEY (`beerID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `beer`
+--
+
+LOCK TABLES `beer` WRITE;
+/*!40000 ALTER TABLE `beer` DISABLE KEYS */;
+INSERT INTO `beer` VALUES (1,'hola amigo'),(2,'I don\'t remember'),(3,'Who even knows man'),(4,'Smoker'),(5,'asdfasdf'),(6,'asdf'),(7,'asdf'),(8,'asdfasd'),(9,'@#%'),(10,'I forget'),(11,'asdlfkjasd;lfkja;sdlkfja;sdlk');
+/*!40000 ALTER TABLE `beer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `beer_contains_ingredient`
+--
+
+DROP TABLE IF EXISTS `beer_contains_ingredient`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `beer_contains_ingredient` (
+  `beerID` int(11) NOT NULL,
+  `ingID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `beer_contains_ingredient`
+--
+
+LOCK TABLES `beer_contains_ingredient` WRITE;
+/*!40000 ALTER TABLE `beer_contains_ingredient` DISABLE KEYS */;
+/*!40000 ALTER TABLE `beer_contains_ingredient` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `beer_is_beer_type`
+--
+
+DROP TABLE IF EXISTS `beer_is_beer_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `beer_is_beer_type` (
+  `beer` int(11) DEFAULT NULL,
+  `beer_type` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `beer_is_beer_type`
+--
+
+LOCK TABLES `beer_is_beer_type` WRITE;
+/*!40000 ALTER TABLE `beer_is_beer_type` DISABLE KEYS */;
+/*!40000 ALTER TABLE `beer_is_beer_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `beer_type`
+--
+
+DROP TABLE IF EXISTS `beer_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `beer_type` (
+  `typeID` int(11) NOT NULL,
+  `name` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `beer_type`
+--
+
+LOCK TABLES `beer_type` WRITE;
+/*!40000 ALTER TABLE `beer_type` DISABLE KEYS */;
+INSERT INTO `beer_type` VALUES (1,'Brews'),(2,'Lager');
+/*!40000 ALTER TABLE `beer_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `fermentation`
+--
+
+DROP TABLE IF EXISTS `fermentation`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fermentation` (
+  `FID` int(11) NOT NULL,
+  `value` float NOT NULL,
+  `unit_name` varchar(50) NOT NULL,
+  `fermentation_type` varchar(50) NOT NULL,
+  `brew_id` int(11) NOT NULL,
+  `timedate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`FID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `fermentation`
+--
+
+LOCK TABLES `fermentation` WRITE;
+/*!40000 ALTER TABLE `fermentation` DISABLE KEYS */;
+INSERT INTO `fermentation` VALUES (1,5.55,'grams','something',1,'2015-12-12 00:00:00'),(2,2.15,'Cups','Spring Fermentation',1,'2013-02-16 05:00:00'),(3,7.77,'Teaspoons','Islander',5,'2014-06-01 09:00:00');
+/*!40000 ALTER TABLE `fermentation` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `fermentation_type`
+--
+
+DROP TABLE IF EXISTS `fermentation_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fermentation_type` (
+  `ftypeID` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  PRIMARY KEY (`ftypeID`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `fermentation_type`
+--
+
+LOCK TABLES `fermentation_type` WRITE;
+/*!40000 ALTER TABLE `fermentation_type` DISABLE KEYS */;
+INSERT INTO `fermentation_type` VALUES (1,'Spring Fermentation'),(2,'Fall Fermentation'),(20,'Islander'),(21,'Summer Fermentation'),(31,'Winter Fermentation');
+/*!40000 ALTER TABLE `fermentation_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ingredient`
+--
+
+DROP TABLE IF EXISTS `ingredient`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ingredient` (
+  `IngID` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `supplier` varchar(150) DEFAULT NULL,
+  `brand` varchar(150) DEFAULT NULL,
+  `amount` float NOT NULL,
+  `unit` varchar(50) NOT NULL,
+  `price_per_unit` float DEFAULT NULL,
+  `ingredient_type` varchar(50) DEFAULT NULL,
+  `best_by` date DEFAULT NULL,
+  `lot_num` double DEFAULT NULL,
+  `low_amount` float DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ingredient`
+--
+
+LOCK TABLES `ingredient` WRITE;
+/*!40000 ALTER TABLE `ingredient` DISABLE KEYS */;
+INSERT INTO `ingredient` VALUES (1,'sweet_ail','new_orleans','dos_equis',8,'barrels',42,'blah','2016-01-28',2,3),(2,'bitter_ale','st.louis','heniquen',17,'barrels',49,NULL,NULL,NULL,1),(3,'dark_ale','new_york','heniquen',10,'barrels',40,NULL,NULL,NULL,4),(4,'sweet_ail','new_orleans','dos_equies',16,'barrels',47,NULL,NULL,NULL,3),(5,'dark_ale','new_york','dos_equies',18,'barrels',40,NULL,NULL,NULL,1),(6,'dark_ale','new_orleans','miller',24,'barrels',51,NULL,NULL,NULL,1),(7,'sweet_ail','los_angelas','dos_equies',11,'barrels',41,NULL,NULL,NULL,1),(8,'dark_ale','columbia','budweiser',23,'barrels',41,NULL,NULL,NULL,1),(9,'dark_ale','new_york','dos_equies',3,'barrels',60,NULL,NULL,NULL,2),(10,'bitter_ale','new_york','budweiser',18,'barrels',56,NULL,NULL,NULL,3),(11,'bitter_ale','new_orleans','miller',7,'barrels',60,NULL,NULL,NULL,2),(12,'bitter_ale','los_angelas','heniquen',9,'barrels',53,NULL,NULL,NULL,5),(13,'bitter_ale','new_york','heniquen',2,'barrels',58,NULL,NULL,NULL,3),(14,'bitter_ale','new_york','dos_equies',5,'barrels',52,NULL,NULL,NULL,4),(15,'bitter_ale','st.louis','dos_equies',11,'barrels',58,NULL,NULL,NULL,5),(16,'light_ale','new_orleans','miller',14,'barrels',43,NULL,NULL,NULL,5),(17,'bitter_ale','columbia','dos_equies',18,'barrels',44,NULL,NULL,NULL,4),(18,'sweet_ail','new_york','heniquen',4,'barrels',43,NULL,NULL,NULL,5),(19,'dark_ale','columbia','miller',17,'barrels',50,NULL,NULL,NULL,4),(20,'dark_ale','columbia','miller',1,'barrels',45,NULL,NULL,NULL,1),(21,'dark_ale','new_orleans','dos_equies',10,'barrels',59,NULL,NULL,NULL,4),(22,'light_ale','new_orleans','miller',18,'barrels',49,NULL,NULL,NULL,3),(23,'bitter_ale','columbia','miller',2,'barrels',44,NULL,NULL,NULL,4),(24,'dark_ale','los_angelas','heniquen',13,'barrels',60,NULL,NULL,NULL,3),(25,'sweet_ail','new_york','dos_equies',15,'barrels',50,NULL,NULL,NULL,5),(26,'sweet_ail','los_angelas','miller',5,'barrels',51,NULL,NULL,NULL,4),(27,'sweet_ail','st.louis','miller',9,'barrels',49,NULL,NULL,NULL,3),(28,'dark_ale','columbia','dos_equies',2,'barrels',53,NULL,NULL,NULL,4),(29,'light_ale','columbia','dos_equies',5,'barrels',42,NULL,NULL,NULL,4),(30,'bitter_ale','new_york','dos_equies',3,'barrels',57,NULL,NULL,NULL,3),(31,'light_ale','st.louis','heniquen',22,'barrels',48,NULL,NULL,NULL,1),(32,'sweet_ail','st.louis','dos_equies',4,'barrels',56,NULL,NULL,NULL,2),(33,'bitter_ale','new_york','budweiser',9,'barrels',58,NULL,NULL,NULL,3),(34,'light_ale','new_orleans','heniquen',17,'barrels',40,NULL,NULL,NULL,1),(35,'dark_ale','los_angelas','dos_equies',18,'barrels',57,NULL,NULL,NULL,2),(36,'sweet_ail','new_orleans','dos_equies',15,'barrels',53,NULL,NULL,NULL,2),(37,'bitter_ale','new_orleans','heniquen',23,'barrels',60,NULL,NULL,NULL,4),(38,'sweet_ail','st.louis','heniquen',6,'barrels',44,NULL,NULL,NULL,2),(39,'light_ale','st.louis','heniquen',20,'barrels',52,NULL,NULL,NULL,1),(40,'bitter_ale','new_york','dos_equies',21,'barrels',43,NULL,NULL,NULL,4),(41,'dark_ale','st.louis','heniquen',3,'barrels',40,NULL,NULL,NULL,4),(42,'dark_ale','new_york','budweiser',20,'barrels',44,NULL,NULL,NULL,3),(43,'sweet_ail','columbia','miller',5,'barrels',48,NULL,NULL,NULL,1),(44,'sweet_ail','columbia','miller',11,'barrels',40,NULL,NULL,NULL,5),(45,'bitter_ale','st.louis','dos_equies',5,'barrels',58,NULL,NULL,NULL,2),(46,'dark_ale','new_york','miller',19,'barrels',57,NULL,NULL,NULL,2),(47,'dark_ale','los_angelas','miller',6,'barrels',50,NULL,NULL,NULL,1),(48,'sweet_ail','columbia','budweiser',21,'barrels',48,NULL,NULL,NULL,4),(49,'light_ale','st.louis','heniquen',4,'barrels',54,NULL,NULL,NULL,4),(50,'bitter_ale','new_orleans','miller',10,'barrels',60,NULL,NULL,NULL,1),(121212,'bagels','bagel co','shop n save',884,'Cups',33.22,'hops','2015-12-08',5456,12);
+/*!40000 ALTER TABLE `ingredient` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `keg`
+--
+
+DROP TABLE IF EXISTS `keg`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `keg` (
+  `kid` int(11) NOT NULL,
+  `fill_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `distribute_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `return_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`kid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `keg`
+--
+
+LOCK TABLES `keg` WRITE;
+/*!40000 ALTER TABLE `keg` DISABLE KEYS */;
+INSERT INTO `keg` VALUES (1,'2000-03-10 00:00:00','2000-03-11 00:00:00','2000-03-12 00:00:00');
+/*!40000 ALTER TABLE `keg` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `unit`
+--
+
+DROP TABLE IF EXISTS `unit`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `unit` (
+  `name` varchar(50) NOT NULL,
+  PRIMARY KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `unit`
+--
+
+LOCK TABLES `unit` WRITE;
+/*!40000 ALTER TABLE `unit` DISABLE KEYS */;
+INSERT INTO `unit` VALUES ('Cups'),('grams'),('kilograms'),('Teaspoons'),('Temporary');
+/*!40000 ALTER TABLE `unit` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `username` varchar(20) NOT NULL,
+  `hashed_password` varchar(256) DEFAULT NULL,
+  `account` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2015-12-19 20:49:50
